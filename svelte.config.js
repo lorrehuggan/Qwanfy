@@ -1,5 +1,22 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+import svg from '@poppanator/sveltekit-svg';
+
+const svgPlugin = svg({
+	svgoOptions: {
+		plugins: [
+			{
+				name: 'preset-default',
+				params: {
+					overrides: {
+						removeViewBox: false
+					}
+				}
+			},
+			'removeDimensions'
+		]
+	}
+});
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,6 +26,9 @@ const config = {
 
 	kit: {
 		adapter: adapter()
+	},
+	vite: {
+		plugins: [svgPlugin]
 	}
 };
 
