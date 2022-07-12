@@ -38,7 +38,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"daisyui": "^2.19.0",
 		"howler": "^2.2.3"
 	}
 }
