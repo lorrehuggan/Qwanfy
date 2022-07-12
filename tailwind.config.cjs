@@ -67,5 +67,30 @@ module.exports = {
 			}
 		}
 	},
-	plugins: []
+	daisyui: {
+		themes: [
+			{
+				mytheme: {
+					primary: '#f72585',
+
+					secondary: '#7209b7',
+
+					accent: '#4cc9f0',
+
+					neutral: '#171717',
+
+					'base-100': '#FFFFFF',
+
+					info: '#3ABFF8',
+
+					success: '#36D399',
+
+					warning: '#FBBD23',
+
+					error: '#F87272'
+				}
+			}
+		]
+	},
+	plugins: [require('daisyui')]
 };

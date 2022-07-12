@@ -3,13 +3,11 @@
 	import { convertMsToMinutesSeconds } from '$lib/utils';
 	import ActiveSearch from '$lib/components/activeSearch.svelte';
 	import PreviewSong from '$lib/components/previewSong.svelte';
-	import { subscribe } from 'svelte/internal';
-	import Cross from '$lib/icons/cross.svelte';
 	const ran = Math.floor(Math.random() * 9);
 </script>
 
 {#if $RelatedStore.length > 0 && !$SearchingStore}
-	<section class="mx-auto w-2/3">
+	<section class="w-2/3 pr-8">
 		<ActiveSearch />
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
 		{#each $RelatedStore as related}
