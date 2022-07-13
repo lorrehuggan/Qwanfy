@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let preview_url: string | null;
 	import { Howl, Howler } from 'howler';
-	let playedPercent = 0;
+	$: playedPercent = 0;
 
 	const prev = new Howl({
 		src: [preview_url!],
@@ -27,10 +27,5 @@
 
 <div on:mouseenter={play} on:mouseleave={stop} class="mr-2 flex cursor-pointer flex-col">
 	<p class=" mb-1 text-xs uppercase">preview</p>
-	<span class=" relative h-1 w-full  overflow-hidden rounded bg-c-pink-500">
-		<span
-			style={`translate:${playedPercent}%`}
-			class={`absolute left-0 top-0 h-full w-full transition-all ease-in-out duration-300 bg-neutral-300`}
-		/>
-	</span>
+	<progress class="progress progress-primary w-full" value={playedPercent} max="100" />
 </div>

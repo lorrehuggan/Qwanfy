@@ -11,7 +11,9 @@
 		<ActiveSearch />
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
 		{#each $RelatedStore as related}
-			<div class="mb-4 flex items-center">
+			<div
+				class="mb-4 flex cursor-pointer items-center rounded p-2 transition-all duration-300 ease-in-out hover:bg-stone-700 "
+			>
 				<img
 					src={related[ran].album.images[0].url}
 					alt={related[ran].name}

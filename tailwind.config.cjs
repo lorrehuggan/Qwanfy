@@ -3,6 +3,14 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			boxShadow: {
+				main: `0px 0.9px 2.2px rgba(0, 0, 0, 0.02),
+  0px 2.2px 5.3px rgba(0, 0, 0, 0.028),
+  0px 4.1px 10px rgba(0, 0, 0, 0.035),
+  0px 7.4px 17.9px rgba(0, 0, 0, 0.042),
+  0px 13.8px 33.4px rgba(0, 0, 0, 0.05),
+  0px 33px 80px rgba(0, 0, 0, 0.07)`
+			},
 			colors: {
 				'c-teal': {
 					50: '#f6fcfe',
@@ -92,5 +100,5 @@ module.exports = {
 			}
 		]
 	},
-	plugins: []
+	plugins: [require('daisyui')]
 };

@@ -70,17 +70,17 @@
 		Discover new music with the help of old favorites.
 	</h1>
 
-	<div class="flex border-b-2 border-neutral-50 py-2">
+	<div class="border-neutral-50 flex border-b-2 py-2">
 		{#if $EnabledStore}
 			<input
-				class="w-full bg-neutral-900 text-lg focus:outline-none"
+				class="w-full bg-neutral text-lg focus:outline-none"
 				type="text"
 				placeholder="Search by artist name"
 				bind:this={artist}
 			/>
 		{:else}
 			<input
-				class="w-full bg-neutral-900 text-lg focus:outline-none"
+				class="w-full bg-neutral text-lg focus:outline-none"
 				type="text"
 				placeholder="Search by track name"
 				bind:this={track}
