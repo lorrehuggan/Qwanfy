@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { RELATED_ARTISTS, SEARCH } from '$lib/api';
+	import { MAIN_ENDPOINT } from '$lib/api';
 	import SearchSwitch from '$lib/components/searchSwitch.svelte';
-	import { RelatedStore, SearchingStore, EnabledStore, ActiveSearchStore } from '$lib/stores/store';
-	import type { Related, Track } from '$lib/types';
+	import { SearchingStore, EnabledStore, ActiveSearchStore, DataStore } from '$lib/stores/store';
 	import LoadingMessage from '$lib/components/loadingMessage.svelte';
 
 	let track: HTMLInputElement;
@@ -17,48 +16,20 @@
 
 	async function search() {
 		if ((!$EnabledStore && track.value.length > 1) || ($EnabledStore && artist.value.length > 1)) {
-			try {
-				//Search Store To Get Artist Data
-				SearchingStore.set(true);
-				const artistData = await fetch(
-					`${SEARCH}?track=${!$EnabledStore ? track.value : artist.value}`
-				);
-				const artistDataResponse: Track[] = await artistData.json();
+			SearchingStore.set(true);
+			const response = await fetch(
+				`${MAIN_ENDPOINT}?${track ? `track=${track.value}` : `artist=${artist.value}`}`
+			);
+			const data = await response.json();
+			console.log(data);
 
-				if (artistDataResponse[0]) {
-					ActiveSearchStore.set({
-						track: artistDataResponse[0].name,
-						artist: artistDataResponse[0].artists[0].name,
-						image: artistDataResponse[0].album.images[0].url
-					});
-				}
-
-				// Get Related Artists From Searched Artist
-
-				const relatedArtistsData = await fetch(
-					`${RELATED_ARTISTS}?artistId=${artistDataResponse[0].artists[0].id}`
-				);
-				const relatedArtistsDataRes: Related[] = await relatedArtistsData.json();
-
-				relatedArtistsDataRes.map((item: Related) => {
-					if ($RelatedStore.length > 19) {
-						RelatedStore.update(() => {
-							return [];
-						});
-					}
-
-					RelatedStore.update((state: any) => {
-						return [...state, item.body.tracks];
-					});
-					return item.body.tracks;
-				});
-				SearchingStore.set(false);
-				track.value = '';
-				artist.value = '';
-				return;
-			} catch (error: any) {
-				console.log(error.message);
-			}
+			DataStore.set(data);
+			ActiveSearchStore.set({
+				track: data[0].origin.trackName,
+				artist: data[0].origin.artistName,
+				image: data[0].origin.img[0].url
+			});
+			SearchingStore.set(false);
 		}
 	}
 </script>

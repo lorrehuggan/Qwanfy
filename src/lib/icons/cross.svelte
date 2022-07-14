@@ -1,7 +1,6 @@
 <script>
-	import { RelatedStore, ActiveSearchStore, SearchingStore } from '$lib/stores/store';
+	import { ActiveSearchStore, SearchingStore } from '$lib/stores/store';
 	function close() {
-		RelatedStore.set([]);
 		ActiveSearchStore.set({
 			track: '',
 			artist: '',
@@ -13,7 +12,7 @@
 <svg
 	on:click={close}
 	xmlns="http://www.w3.org/2000/svg"
-	class="h-12 w-12 cursor-pointer pr-4 transition-colors duration-200 ease-out hover:text-neutral-900"
+	class="hover:text-neutral-900 h-12 w-12 cursor-pointer pr-4 transition-colors duration-200 ease-out"
 	fill="none"
 	viewBox="0 0 24 24"
 	stroke="currentColor"
