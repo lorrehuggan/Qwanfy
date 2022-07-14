@@ -34,6 +34,7 @@
 		<p class="text-xs text-pink-500">
 			{emptyValue}
 		</p>
+
 		<p class="text-xs text-pink-500">{fullValue}</p>
 	</div>
 </div>

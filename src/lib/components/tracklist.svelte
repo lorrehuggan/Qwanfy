@@ -5,13 +5,19 @@
 	import PreviewSong from '$lib/components/previewSong.svelte';
 	import type { Main } from '$lib/types';
 
-	function selectRandom() {
+	export function renderSelection() {
 		let selected: Main[] = [];
+
 		$DataStore.forEach(() => {
 			const random = Math.floor(Math.random() * $DataStore.length);
 			selected.push($DataStore[random]);
 		});
-		return selected.slice(0, 20);
+
+		if ($FeaturesStore.popularity > 10) {
+			return selected.filter((track) => track.data.popularity >= $FeaturesStore.popularity);
+		}
+
+		return selected;
 	}
 </script>
 
@@ -19,7 +25,7 @@
 	<section class="w-2/3 pr-8">
 		<ActiveSearch />
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
-		{#each selectRandom() as data}
+		{#each renderSelection().slice(0, 20) as data}
 			<div
 				class="mb-4 flex cursor-pointer items-center rounded p-2 transition-all duration-300 ease-in-out hover:bg-stone-700 "
 			>
@@ -31,8 +37,8 @@
 				<div class="w-full">
 					<div class="flex items-center">
 						<p class="text-lg font-black">
-							{data.data.name.length > 100
-								? `${data.data.name.substring(0, 100)}...`
+							{data.data.name.length > 80
+								? `${data.data.name.substring(0, 80)}...`
 								: data.data.name}
 						</p>
 						{#if data.data.explicit}

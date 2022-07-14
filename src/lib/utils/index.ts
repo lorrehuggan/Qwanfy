@@ -1,3 +1,5 @@
+import type { AudioFeatures, Main } from '$lib/types';
+
 function padTo2Digits(num: number) {
 	return num.toString().padStart(2, '0');
 }
