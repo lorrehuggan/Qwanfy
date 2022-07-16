@@ -4,10 +4,13 @@
 	export let name: string;
 	export let emptyValue: string;
 	export let fullValue: string;
+	export let step: number;
+	export let min: number;
+	export let max: number;
 </script>
 
 <div class="mb-4 border-b-[1px] border-white/50 py-2">
-	<p class="text-sm">{name}</p>
+	<p class="text-sm capitalize">{name}</p>
 	<input
 		on:mouseup={() => {
 			if (name === 'popularity') {
@@ -26,15 +29,17 @@
 		}}
 		bind:value={val}
 		type="range"
-		min="0"
-		max="100"
-		class="range range-primary range-xs my-2"
+		{min}
+		{max}
+		{step}
+		class="range range-primary range-xs my-2 "
 	/>
 	<div class="flex items-center justify-between">
-		<p class="text-xs text-pink-500">
+		<p>{val}</p>
+		<p class="text-xs uppercase ">
 			{emptyValue}
 		</p>
 
-		<p class="text-xs text-pink-500">{fullValue}</p>
+		<p class="text-xs uppercase ">{fullValue}</p>
 	</div>
 </div>

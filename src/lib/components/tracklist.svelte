@@ -1,44 +1,56 @@
 <script lang="ts">
-	import { DataStore, ActiveSearchStore, FeaturesStore } from '$lib/stores/store';
-	import { convertMsToMinutesSeconds } from '$lib/utils';
+	import { DataStore, FeaturesStore } from '$lib/stores/store';
+	import { convertMsToMinutesSeconds, shuffle } from '$lib/utils';
 	import ActiveSearch from '$lib/components/activeSearch.svelte';
 	import PreviewSong from '$lib/components/previewSong.svelte';
 	import type { Main } from '$lib/types';
 
-	export function renderSelection() {
-		let selected: Main[] = [];
+	let selected: Main[] = [];
+	let origin: Main[] = [];
 
-		$DataStore.forEach(() => {
-			const random = Math.floor(Math.random() * $DataStore.length);
-			selected.push($DataStore[random]);
-		});
-
-		if ($FeaturesStore.popularity > 10) {
-			return selected.filter((track) => track.data.popularity >= $FeaturesStore.popularity);
+	$: {
+		const store = shuffle($DataStore);
+		selected = [...store];
+		origin = [...store];
+		if (
+			$FeaturesStore.popularity > 0 ||
+			$FeaturesStore.danceability > 0 ||
+			$FeaturesStore.energy > 0 ||
+			$FeaturesStore.acousticness > 0 ||
+			$FeaturesStore.valence > 0 ||
+			$FeaturesStore.tempo > 0
+		) {
+			selected = selected.filter(
+				(song) =>
+					song.data.popularity >= $FeaturesStore.popularity &&
+					song.features.danceability >= $FeaturesStore.danceability &&
+					song.features.energy >= $FeaturesStore.energy &&
+					song.features.acousticness >= $FeaturesStore.acousticness &&
+					song.features.valence >= $FeaturesStore.valence &&
+					song.features.tempo >= $FeaturesStore.tempo
+			);
 		}
-
-		return selected;
 	}
 </script>
 
-{#if $DataStore.length > 0 && $ActiveSearchStore.track}
-	<section class="w-2/3 pr-8">
+<section class="w-2/3 pr-8">
+	{#if selected.length > 0}
 		<ActiveSearch />
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
-		{#each renderSelection().slice(0, 20) as data}
+		{#each selected as data}
 			<div
-				class="mb-4 flex cursor-pointer items-center rounded p-2 transition-all duration-300 ease-in-out hover:bg-stone-700 "
+				class="mb-4 flex cursor-pointer items-center rounded p-2 transition-all duration-300 ease-in-out hover:bg-stone-800 "
 			>
 				<img
 					src={data.data.images[0].url}
 					alt={data.data.name}
-					class="mr-4 h-24 w-24 rounded shadow-lg"
+					class="mr-4 h-24 w-24 rounded shadow-main"
 				/>
 				<div class="w-full">
 					<div class="flex items-center">
 						<p class="text-lg font-black">
-							{data.data.name.length > 80
-								? `${data.data.name.substring(0, 80)}...`
+							{data.data.name.length > 70
+								? `${data.data.name.substring(0, 70)}...`
 								: data.data.name}
 						</p>
 						{#if data.data.explicit}
@@ -66,5 +78,7 @@
 				</div>
 			</div>
 		{/each}
-	</section>
-{/if}
+	{:else if origin.length > 0}
+		<p>No Matches</p>
+	{/if}
+</section>

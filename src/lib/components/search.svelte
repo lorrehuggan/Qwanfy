@@ -21,7 +21,6 @@
 				`${MAIN_ENDPOINT}?${track ? `track=${track.value}` : `artist=${artist.value}`}`
 			);
 			const data = await response.json();
-			console.log(data);
 
 			DataStore.set(data);
 			ActiveSearchStore.set({
@@ -30,6 +29,8 @@
 				image: data[0].origin.img[0].url
 			});
 			SearchingStore.set(false);
+			track.value = '';
+			artist.value = '';
 		}
 	}
 </script>
