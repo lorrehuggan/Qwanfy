@@ -3,6 +3,7 @@
 	import SearchSwitch from '$lib/components/searchSwitch.svelte';
 	import { SearchingStore, EnabledStore, ActiveSearchStore, DataStore } from '$lib/stores/store';
 	import LoadingMessage from '$lib/components/loadingMessage.svelte';
+	import SearchDropdown from '$lib/components/searchDropdown.svelte';
 
 	let track: HTMLInputElement;
 	let artist: HTMLInputElement;
@@ -60,5 +61,6 @@
 		{/if}
 		<SearchSwitch />
 	</div>
+	<SearchDropdown />
 	<LoadingMessage />
 </section>
