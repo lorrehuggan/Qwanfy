@@ -4,9 +4,9 @@
 </script>
 
 {#if $ActiveSearchStore.track}
-	<div class="mb-8 flex h-16 items-center overflow-hidden rounded-xl bg-c-pink-400">
+	<div class="mb-8 flex h-16 items-center overflow-hidden rounded border border-white bg-black">
 		<img
-			class="mr-2 h-full object-cover opacity-50 "
+			class="mr-2 h-full object-cover opacity-80 "
 			src={$ActiveSearchStore.image}
 			alt={$ActiveSearchStore.track}
 		/>

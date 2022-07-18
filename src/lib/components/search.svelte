@@ -12,9 +12,23 @@
 	} from '$lib/stores/store';
 	import LoadingMessage from '$lib/components/loadingMessage.svelte';
 	import SearchDropdown from '$lib/components/searchDropdown.svelte';
+	import { resetSearch } from '$lib/utils';
 
 	let track: string = '';
 	let artist: string = '';
+
+	function deleteFn(event: KeyboardEvent) {
+		if (event.key === 'Backspace') {
+			if (track.length === 0) {
+				resetSearch();
+			}
+		}
+
+		ActiveSearchStore.set({
+			track: '',
+			image: ''
+		});
+	}
 
 	function handleInput(event: KeyboardEvent) {
 		PreSearchStore.set(true);
@@ -58,7 +72,7 @@
 	}
 </script>
 
-<svelte:window on:keydown={handleInput} />
+<svelte:window on:keydown={handleInput} on:keyup={deleteFn} />
 
 <section class="mx-auto mt-8 w-2/3">
 	<h1 class="mb-12 w-1/2 text-5xl font-black">

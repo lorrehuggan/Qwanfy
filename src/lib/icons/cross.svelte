@@ -1,9 +1,19 @@
 <script>
-	import { ActiveSearchStore, SearchingStore } from '$lib/stores/store';
+	import {
+		ActiveSearchStore,
+		DataStore,
+		PreSearchAlbumStore,
+		PreSearchArtistStore,
+		RelatedStore,
+		SearchingStore
+	} from '$lib/stores/store';
 	function close() {
+		PreSearchAlbumStore.set([]);
+		PreSearchArtistStore.set([]);
+		DataStore.set([]);
+		RelatedStore.set(false);
 		ActiveSearchStore.set({
 			track: '',
-			artist: '',
 			image: ''
 		});
 	}
@@ -12,7 +22,7 @@
 <svg
 	on:click={close}
 	xmlns="http://www.w3.org/2000/svg"
-	class="hover:text-neutral-900 h-12 w-12 cursor-pointer pr-4 transition-colors duration-200 ease-out"
+	class="h-12 w-12 cursor-pointer pr-4 transition-colors duration-200 ease-out hover:text-red-500"
 	fill="none"
 	viewBox="0 0 24 24"
 	stroke="currentColor"

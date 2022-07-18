@@ -44,7 +44,7 @@
 				<img
 					src={data.data.images[0].url}
 					alt={data.data.name}
-					class="z-30 mr-4 h-24 w-24 rounded opacity-70 shadow-main transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 "
+					class="z-30 mr-4 h-24 w-24 rounded opacity-90 shadow-main transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 "
 				/>
 				<div class="z-30 w-full">
 					<div class="flex items-center">

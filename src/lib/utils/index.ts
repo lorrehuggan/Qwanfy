@@ -1,4 +1,13 @@
 import type { AudioFeatures, Main } from '$lib/types';
+import {
+	EnabledStore,
+	ActiveSearchStore,
+	PreSearchAlbumStore,
+	PreSearchArtistStore,
+	DataStore,
+	RelatedStore,
+	PreSearchStore
+} from '$lib/stores/store';
 
 function padTo2Digits(num: number) {
 	return num.toString().padStart(2, '0');
@@ -39,4 +48,14 @@ export function shuffle<T>(array: Array<T>): T[] {
 	}
 
 	return array;
+}
+
+export function resetSearch() {
+	PreSearchStore.set(false);
+	DataStore.set([]);
+	RelatedStore.set(false);
+	ActiveSearchStore.set({
+		track: '',
+		image: ''
+	});
 }

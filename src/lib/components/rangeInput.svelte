@@ -35,7 +35,6 @@
 		class="range range-primary range-xs my-2 "
 	/>
 	<div class="flex items-center justify-between">
-		<p>{val}</p>
 		<p class="text-xs uppercase ">
 			{emptyValue}
 		</p>

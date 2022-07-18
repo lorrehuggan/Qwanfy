@@ -11,7 +11,7 @@
 
 {#if $DataStore.length > 0}
 	<section class="w-1/3 rounded-lg px-8 shadow-main">
-		<div class="px- w-full">
+		<div class="sticky top-4 w-full">
 			<RangeInput
 				name="popularity"
 				val={popularity}
