@@ -11,3 +11,5 @@ export const SEARCH = BASE_TRACKS + 'search-tracks';
 export const RELATED_ARTISTS = BASE_BROWSE + 'related-artist';
 
 export const MAIN_ENDPOINT = BASE + 'main';
+
+export const PRE_ENDPOINT = BASE + 'main/pre-search';

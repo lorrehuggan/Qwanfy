@@ -1,9 +1,9 @@
 import { writable } from 'svelte/store';
-import type { AudioFeatures, Main } from '$lib/types/';
+import type { AlbumResponse, ArtistResponse, AudioFeatures, Item, Main, Tracks } from '$lib/types/';
+
 type ActiveSearch = {
-	track?: string | undefined;
-	artist?: string | undefined;
-	image?: string | undefined;
+	track: string;
+	image: string;
 };
 
 export const SearchingStore = writable<boolean>(false);
@@ -12,13 +12,18 @@ export const EnabledStore = writable<boolean>(false);
 
 export const ActiveSearchStore = writable<ActiveSearch>({
 	track: '',
-	artist: '',
 	image: ''
 });
 
 export const RelatedStore = writable<boolean>(false);
 
+export const PreSearchStore = writable<boolean>(false);
+
 export const DataStore = writable<Main[] | []>([]);
+
+export const PreSearchAlbumStore = writable<Item[] | []>([]);
+
+export const PreSearchArtistStore = writable<ArtistResponse[] | []>([]);
 
 export const FeaturesStore = writable<AudioFeatures>({
 	popularity: 0,

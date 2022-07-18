@@ -1,42 +1,64 @@
 <script lang="ts">
-	import { MAIN_ENDPOINT } from '$lib/api';
+	import { PRE_ENDPOINT } from '$lib/api';
 	import SearchSwitch from '$lib/components/searchSwitch.svelte';
-	import { SearchingStore, EnabledStore, ActiveSearchStore, DataStore } from '$lib/stores/store';
+	import {
+		EnabledStore,
+		ActiveSearchStore,
+		PreSearchAlbumStore,
+		PreSearchArtistStore,
+		DataStore,
+		RelatedStore,
+		PreSearchStore
+	} from '$lib/stores/store';
 	import LoadingMessage from '$lib/components/loadingMessage.svelte';
 	import SearchDropdown from '$lib/components/searchDropdown.svelte';
 
-	let track: HTMLInputElement;
-	let artist: HTMLInputElement;
+	let track: string = '';
+	let artist: string = '';
 
-	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
-			search();
+	function handleInput(event: KeyboardEvent) {
+		PreSearchStore.set(true);
+		let search: string = '';
+		if (track.length > 1 && track.length < 15) {
+			search = track;
+			preSearch(`track=${search}`);
 		}
-		return;
+		if (artist.length > 1 && artist.length < 15) {
+			search = artist;
+			preSearch(`artist=${search}`);
+		}
+		if (track.length === 0 || artist.length === 0) {
+			PreSearchAlbumStore.set([]);
+			PreSearchArtistStore.set([]);
+			DataStore.set([]);
+			RelatedStore.set(false);
+			ActiveSearchStore.set({
+				track: '',
+				image: ''
+			});
+		}
 	}
 
-	async function search() {
-		if ((!$EnabledStore && track.value.length > 1) || ($EnabledStore && artist.value.length > 1)) {
-			SearchingStore.set(true);
-			const response = await fetch(
-				`${MAIN_ENDPOINT}?${track ? `track=${track.value}` : `artist=${artist.value}`}`
-			);
+	async function preSearch(search: string) {
+		try {
+			const response = await fetch(`${PRE_ENDPOINT}?${search}`);
 			const data = await response.json();
 
-			DataStore.set(data);
-			ActiveSearchStore.set({
-				track: data[0].origin.trackName,
-				artist: data[0].origin.artistName,
-				image: data[0].origin.img[0].url
-			});
-			SearchingStore.set(false);
-			track.value = '';
-			artist.value = '';
+			if ($EnabledStore) {
+				PreSearchArtistStore.set(data);
+				return;
+			}
+			if (!$EnabledStore) {
+				PreSearchAlbumStore.set(data.tracks.items);
+				return;
+			}
+		} catch (error: any) {
+			console.error(error.message);
 		}
 	}
 </script>
 
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window on:keydown={handleInput} />
 
 <section class="mx-auto mt-8 w-2/3">
 	<h1 class="mb-12 w-1/2 text-5xl font-black">
@@ -49,18 +71,20 @@
 				class="w-full bg-neutral text-lg focus:outline-none"
 				type="text"
 				placeholder="Search by artist name"
-				bind:this={artist}
+				bind:value={artist}
 			/>
 		{:else}
 			<input
 				class="w-full bg-neutral text-lg focus:outline-none"
 				type="text"
 				placeholder="Search by track name"
-				bind:this={track}
+				bind:value={track}
 			/>
 		{/if}
 		<SearchSwitch />
 	</div>
-	<SearchDropdown />
+
+	<SearchDropdown {track} {artist} />
+
 	<LoadingMessage />
 </section>

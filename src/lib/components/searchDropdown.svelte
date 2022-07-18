@@ -1,9 +1,20 @@
-<div class="dropdown-open dropdownw-full shadow-main">
-	<ul
-		tabindex="0"
-		class="dropdown-content menu max-h-56 w-full  overflow-y-scroll bg-base-100 text-neutral"
-	>
-		<li class="bg-c-teal-200 hover:bg-c-pink-300"><a>Item 1</a></li>
-		<li class="bg-white hover:bg-c-pink-300"><a>Item 2</a></li>
-	</ul>
-</div>
+<script lang="ts">
+	import { PreSearchAlbumStore, PreSearchArtistStore, PreSearchStore } from '$lib/stores/store';
+	import SearchList from '$lib/components/searchList.svelte';
+	export let track: string = '';
+	export let artist: string = '';
+</script>
+
+{#if $PreSearchStore}
+	<div class="dropdownw-full dropdown-open shadow-main">
+		<div
+			tabindex="0"
+			class="dropdown-content menu max-h-56 w-full overflow-y-scroll bg-base-100 text-neutral"
+		>
+			{#if $PreSearchAlbumStore.length > 0 || ($PreSearchArtistStore.length > 0 && $PreSearchStore)}
+				<!-- Users Main Search  -->
+				<SearchList {track} {artist} />
+			{/if}
+		</div>
+	</div>
+{/if}
