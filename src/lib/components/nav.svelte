@@ -2,11 +2,11 @@
 	import SpotifyLogo from '$lib/icons/spotify-icon.svelte';
 </script>
 
-<nav class="mx-auto flex h-20 w-2/3  items-center justify-between">
+<nav class="mx-auto flex h-20 w-5/6 items-center  justify-between lg:w-2/3">
 	<div class="flex items-center">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			class="h-6 w-6 text-c-teal-500"
+			class="h-4 w-4 text-c-teal-500 lg:h-6 lg:w-6"
 			viewBox="0 0 20 20"
 			fill="currentColor"
 		>
@@ -17,7 +17,7 @@
 			/>
 		</svg>
 		<h1
-			class="bg-gradient-to-r from-c-teal-600 via-c-pink-400 to-c-pink-500 bg-clip-text text-4xl font-black uppercase text-transparent"
+			class="bg-gradient-to-r from-c-teal-600 via-c-pink-400 to-c-pink-500 bg-clip-text text-lg font-black uppercase text-transparent lg:text-4xl"
 		>
 			kwantize
 		</h1>

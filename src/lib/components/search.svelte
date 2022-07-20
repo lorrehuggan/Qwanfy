@@ -74,22 +74,22 @@
 
 <svelte:window on:keydown={handleInput} on:keyup={deleteFn} />
 
-<section class="mx-auto mt-8 w-2/3">
-	<h1 class="mb-12 w-1/2 text-5xl font-black">
+<section class="mx-auto mt-8 w-5/6 lg:w-2/3">
+	<h1 class="mb-12 w-full text-3xl font-black lg:w-1/2 lg:text-5xl">
 		Discover new music with the help of old favorites.
 	</h1>
 
 	<div class="flex border-b-2 border-neutral py-2">
 		{#if $EnabledStore}
 			<input
-				class="w-full text-lg text-neutral focus:outline-none"
+				class="w-full text-base text-neutral focus:outline-none lg:text-lg"
 				type="text"
 				placeholder="Search by artist name"
 				bind:value={artist}
 			/>
 		{:else}
 			<input
-				class="w-full text-lg  text-neutral focus:outline-none"
+				class="w-full text-base text-neutral  focus:outline-none lg:text-lg"
 				type="text"
 				placeholder="Search by track name"
 				bind:value={track}

@@ -5,7 +5,7 @@
 
 <div class="flex items-center">
 	<span
-		class={`mr-2 transition-colors duration-200 ease-in-out ${
+		class={`mr-2 transition-colors text-sm lg:text-base duration-200 ease-in-out ${
 			$EnabledStore ? 'text-neutral-600' : ''
 		}`}>Track</span
 	>
@@ -21,7 +21,7 @@
 		/>
 	</Switch>
 	<span
-		class={`ml-2 transition-colors duration-200 ease-in-out ${
+		class={`ml-2 transition-colors text-sm lg:text-base duration-200 ease-in-out ${
 			$EnabledStore ? '' : 'text-neutral-600'
 		}`}>Artist</span
 	>
