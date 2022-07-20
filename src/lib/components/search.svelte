@@ -79,7 +79,7 @@
 		Discover new music with the help of old favorites.
 	</h1>
 
-	<div class="border-neutral-50 flex border-b-2 py-2">
+	<div class="flex border-b-2 border-neutral py-2">
 		{#if $EnabledStore}
 			<input
 				class="w-full text-lg text-neutral focus:outline-none"

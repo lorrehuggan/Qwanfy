@@ -17,7 +17,7 @@
 			/>
 		</svg>
 		<h1
-			class="bg-gradient-to-r from-c-teal-500 to-c-pink-400 bg-clip-text text-4xl font-black uppercase text-transparent"
+			class="bg-gradient-to-r from-c-teal-600 via-c-pink-400 to-c-pink-500 bg-clip-text text-4xl font-black uppercase text-transparent"
 		>
 			kwantize
 		</h1>
