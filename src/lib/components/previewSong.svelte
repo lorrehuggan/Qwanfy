@@ -26,6 +26,6 @@
 </script>
 
 <div on:mouseenter={play} on:mouseleave={stop} class="mr-2 flex cursor-pointer flex-col">
-	<p class=" mb-1 text-xs uppercase">preview</p>
+	<p class=" mb-1 text-xs uppercase group-hover:text-white">preview</p>
 	<progress class="progress progress-primary w-full" value={playedPercent} max="100" />
 </div>

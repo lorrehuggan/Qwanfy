@@ -39,7 +39,7 @@
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
 		{#each selected.slice(0, 20) as data}
 			<div
-				class=" group relative mb-4 flex cursor-pointer items-center  overflow-hidden rounded p-2 transition-all delay-500 duration-300 ease-in-out hover:bg-gradient-to-r hover:from-c-teal-500 hover:to-c-pink-700"
+				class=" group relative mb-4 flex cursor-pointer items-center  rounded p-2 transition-all delay-500 duration-300 ease-in-out hover:bg-gradient-to-r hover:from-c-teal-500 hover:to-c-pink-700"
 			>
 				<img
 					src={data.data.images[0].url}
@@ -48,13 +48,15 @@
 				/>
 				<div class="z-30 w-full">
 					<div class="flex items-center">
-						<p class="text-lg font-black">
+						<p class="text-lg font-black group-hover:text-white">
 							{data.data.name.length > 50
 								? `${data.data.name.substring(0, 50)}...`
 								: data.data.name}
 						</p>
 						{#if data.data.explicit}
-							<span class="ml-2 border-2 border-c-pink-500 p-[1px] text-sm uppercase">explicit</span
+							<span
+								class="ml-2 border-2 border-c-pink-500 p-[1px] text-sm uppercase group-hover:text-white"
+								>explicit</span
 							>
 						{/if}
 					</div>
@@ -62,7 +64,7 @@
 						{#each data.data.artist as artist, i}
 							<a href={artist.external_urls.spotify}>
 								<span
-									class="mr-1 cursor-pointer text-sm transition-colors duration-200 ease-in-out hover:text-c-pink-500"
+									class="mr-1 cursor-pointer text-sm transition-colors duration-200 ease-in-out hover:text-c-pink-500 group-hover:text-white"
 								>
 									{`${artist.name}${i + 1 < data.data.artist.length ? ',' : ''}`}</span
 								>
@@ -74,7 +76,9 @@
 					{#if data.data.preview_url}
 						<PreviewSong preview_url={data.data.preview_url} />
 					{/if}
-					<span class="text-sm">{convertMsToMinutesSeconds(data.data.duration)}</span>
+					<span class="text-sm group-hover:text-white"
+						>{convertMsToMinutesSeconds(data.data.duration)}</span
+					>
 				</div>
 				<div
 					class=" absolute bottom-0 left-0 z-0 h-[90%] w-full translate-y-5 bg-black opacity-0 transition-all duration-500 ease-in-out group-hover:-translate-y-0 group-hover:opacity-100"

@@ -82,14 +82,14 @@
 	<div class="border-neutral-50 flex border-b-2 py-2">
 		{#if $EnabledStore}
 			<input
-				class="w-full bg-neutral text-lg focus:outline-none"
+				class="w-full text-lg text-neutral focus:outline-none"
 				type="text"
 				placeholder="Search by artist name"
 				bind:value={artist}
 			/>
 		{:else}
 			<input
-				class="w-full bg-neutral text-lg focus:outline-none"
+				class="w-full text-lg  text-neutral focus:outline-none"
 				type="text"
 				placeholder="Search by track name"
 				bind:value={track}

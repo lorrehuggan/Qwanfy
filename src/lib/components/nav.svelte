@@ -24,7 +24,7 @@
 	</div>
 	<ul class="flex text-sm">
 		<li class="flex cursor-pointer items-center uppercase">
-			Connect with spotify
+			Connect with
 			<SpotifyLogo />
 		</li>
 	</ul>

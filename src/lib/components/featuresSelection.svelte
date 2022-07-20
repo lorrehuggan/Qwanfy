@@ -10,7 +10,7 @@
 </script>
 
 {#if $DataStore.length > 0}
-	<section class="w-1/3 rounded-lg px-8 shadow-main">
+	<section class="w-1/3 rounded-lg px-8">
 		<div class="sticky top-4 w-full">
 			<RangeInput
 				name="popularity"

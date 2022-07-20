@@ -10,7 +10,7 @@
 </script>
 
 <div class="mb-4 border-b-[1px] border-white/50 py-2">
-	<p class="text-sm capitalize">{name}</p>
+	<p class="text-sm font-bold uppercase ">{name}</p>
 	<input
 		on:mouseup={() => {
 			if (name === 'popularity') {
