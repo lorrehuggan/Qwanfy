@@ -74,8 +74,8 @@
 
 <svelte:window on:keydown={handleInput} on:keyup={deleteFn} />
 
-<section class="mx-auto mt-8 w-5/6 lg:w-2/3">
-	<h1 class="mb-12 w-full text-3xl font-black lg:w-1/2 lg:text-5xl">
+<section class="mx-auto mt-8 w-[90%] xl:w-2/3">
+	<h1 class="mb-12 w-full text-3xl font-black sm:text-4xl lg:text-5xl xl:w-1/2">
 		Discover new music with the help of old favorites.
 	</h1>
 

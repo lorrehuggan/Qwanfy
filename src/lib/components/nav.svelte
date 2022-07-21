@@ -2,7 +2,7 @@
 	import SpotifyLogo from '$lib/icons/spotify-icon.svelte';
 </script>
 
-<nav class="mx-auto flex h-20 w-5/6 items-center  justify-between lg:w-2/3">
+<nav class="mx-auto flex h-20 w-[90%] items-center  justify-between xl:w-2/3">
 	<div class="flex items-center">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

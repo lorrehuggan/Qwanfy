@@ -7,65 +7,72 @@
 	let danceability = 0;
 	let valence = 0;
 	let acousticness = 0;
+	let open = false;
 </script>
 
 {#if $DataStore.length > 0}
-	<section class="w-1/3 rounded-lg px-8">
-		<div class="sticky top-4 w-full">
-			<RangeInput
-				name="popularity"
-				val={popularity}
-				emptyValue="Playing at bars"
-				fullValue="World Tour"
-				step={1}
-				min={0}
-				max={100}
-			/>
-			<RangeInput
-				name="energy"
-				val={energy}
-				emptyValue="Chill"
-				fullValue="No Chill"
-				step={0.1}
-				min={0}
-				max={1}
-			/>
-			<RangeInput
-				name="tempo"
-				val={tempo}
-				emptyValue="Slow"
-				fullValue="Fast"
-				step={10}
-				min={50}
-				max={250}
-			/>
-			<RangeInput
-				name="danceability"
-				val={danceability}
-				emptyValue="Nope"
-				fullValue="Cutting shapes"
-				step={0.1}
-				min={0}
-				max={1}
-			/>
-			<RangeInput
-				name="valence"
-				val={valence}
-				emptyValue="Sad"
-				fullValue="Happy"
-				step={0.1}
-				min={0}
-				max={1}
-			/>
-			<RangeInput
-				name="acoustics"
-				val={acousticness}
-				emptyValue="Digital"
-				fullValue="Analog"
-				step={0.1}
-				min={0}
-				max={1}
-			/>
+	<section class="w-full rounded-lg p-0 xl:w-1/3 xl:px-2">
+		<div
+			tabindex="0"
+			class="collapse-arrow collapse rounded-box mb-8 border border-base-300 bg-base-100 xl:sticky xl:top-4"
+		>
+			<div class="collapse-title  text-base font-medium">Show Tracklist Settings</div>
+			<div class="collapse-content">
+				<RangeInput
+					name="popularity"
+					val={popularity}
+					emptyValue="Playing at bars"
+					fullValue="World Tour"
+					step={1}
+					min={0}
+					max={100}
+				/>
+				<RangeInput
+					name="energy"
+					val={energy}
+					emptyValue="Chill"
+					fullValue="No Chill"
+					step={0.1}
+					min={0}
+					max={1}
+				/>
+				<RangeInput
+					name="tempo"
+					val={tempo}
+					emptyValue="Slow"
+					fullValue="Fast"
+					step={10}
+					min={50}
+					max={250}
+				/>
+				<RangeInput
+					name="danceability"
+					val={danceability}
+					emptyValue="Nope"
+					fullValue="Cutting shapes"
+					step={0.1}
+					min={0}
+					max={1}
+				/>
+				<RangeInput
+					name="valence"
+					val={valence}
+					emptyValue="Sad"
+					fullValue="Happy"
+					step={0.1}
+					min={0}
+					max={1}
+				/>
+				<RangeInput
+					name="acoustics"
+					val={acousticness}
+					emptyValue="Digital"
+					fullValue="Analog"
+					step={0.1}
+					min={0}
+					max={1}
+				/>
+			</div>
 		</div>
 	</section>
 {/if}

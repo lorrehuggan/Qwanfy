@@ -11,7 +11,7 @@
 			alt={$ActiveSearchStore.track}
 		/>
 		<div class="w-full">
-			<p class="text-lg font-bold text-white">{$ActiveSearchStore.track}</p>
+			<p class="text-base font-bold text-white lg:text-lg">{$ActiveSearchStore.track}</p>
 		</div>
 
 		<Cross />

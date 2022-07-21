@@ -5,7 +5,7 @@
 </script>
 
 <Search />
-<section class=" mx-auto flex w-2/3">
-	<Tracklist />
+<section class=" mx-auto flex w-[90%] flex-col xl:w-2/3 xl:flex-row">
 	<FeaturesSelection />
+	<Tracklist />
 </section>

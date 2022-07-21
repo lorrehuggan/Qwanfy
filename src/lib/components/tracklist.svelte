@@ -8,6 +8,10 @@
 	let selected: Main[] = [];
 	let origin: Main[] = [];
 
+	let innerWidth: number = 0;
+	let titleLength: number = 50;
+	let artistArray: number = 8;
+
 	$: {
 		const store = shuffle($DataStore);
 		selected = [...store];
@@ -30,38 +34,47 @@
 					song.features.tempo >= $FeaturesStore.tempo
 			);
 		}
+		if (innerWidth < 700) {
+			titleLength = 25;
+			artistArray = 2;
+		} else {
+			titleLength = 50;
+			artistArray = 8;
+		}
 	}
 </script>
 
-<section class="w-2/3 pr-8">
+<svelte:window bind:innerWidth />
+
+<section class="w-full xl:w-2/3">
 	{#if selected.length > 0}
 		<ActiveSearch />
 		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
 		{#each selected.slice(0, 20) as data}
 			<div
-				class=" group relative mb-4 flex cursor-pointer items-center  rounded p-2 transition-all delay-500 duration-300 ease-in-out hover:bg-gradient-to-r hover:from-c-teal-500 hover:to-c-pink-700"
+				class=" group relative mb-4 flex cursor-pointer items-center rounded  p-2 shadow transition-all delay-500 duration-300 ease-in-out hover:bg-gradient-to-r hover:from-c-teal-500 hover:to-c-pink-700 lg:shadow-none "
 			>
 				<img
 					src={data.data.images[0].url}
 					alt={data.data.name}
-					class="z-30 mr-4 h-24 w-24 rounded opacity-90 shadow-main transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 "
+					class="z-30 mr-4 h-20 w-20 rounded opacity-90 shadow-main transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 lg:h-24 lg:w-24 "
 				/>
 				<div class="z-30 w-full">
 					<div class="flex items-center">
-						<p class="text-lg font-black group-hover:text-white">
-							{data.data.name.length > 50
-								? `${data.data.name.substring(0, 50)}...`
+						<p class="text-base font-black group-hover:text-white lg:text-lg">
+							{data.data.name.length > titleLength
+								? `${data.data.name.substring(0, titleLength)}...`
 								: data.data.name}
 						</p>
 						{#if data.data.explicit}
 							<span
-								class="ml-2 border-2 border-c-pink-500 p-[1px] text-sm uppercase group-hover:text-white"
+								class="ml-2 hidden border-2 border-c-pink-500 p-[1px] text-xs uppercase group-hover:text-white lg:text-sm"
 								>explicit</span
 							>
 						{/if}
 					</div>
 					<div class="z-30">
-						{#each data.data.artist as artist, i}
+						{#each data.data.artist.slice(0, artistArray) as artist, i}
 							<a href={artist.external_urls.spotify}>
 								<span
 									class="mr-1 cursor-pointer text-sm transition-colors duration-200 ease-in-out hover:text-c-pink-500 group-hover:text-white"
@@ -76,7 +89,7 @@
 					{#if data.data.preview_url}
 						<PreviewSong preview_url={data.data.preview_url} />
 					{/if}
-					<span class="text-sm group-hover:text-white"
+					<span class="hidden text-sm group-hover:text-white lg:inline"
 						>{convertMsToMinutesSeconds(data.data.duration)}</span
 					>
 				</div>

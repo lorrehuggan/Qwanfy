@@ -33,3 +33,6 @@ export const FeaturesStore = writable<AudioFeatures>({
 	valence: 0,
 	tempo: 0
 });
+
+export const songPlayingStore = writable<boolean>(false);
+export const songPlayingIDStore = writable<string>('');
