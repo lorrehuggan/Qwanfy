@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Search from '$lib/components/search.svelte';
 	import Tracklist from '$lib/components/tracklist.svelte';
-	import FeaturesSelection from '$lib/components/featuresSelection.svelte';
+	import FeaturesSelection from '$lib/components/rangeSelection.svelte';
 </script>
 
 <Search />

@@ -21,6 +21,7 @@
 		if (event.key === 'Backspace') {
 			if (track.length === 0) {
 				resetSearch();
+				return;
 			}
 		}
 
@@ -36,10 +37,12 @@
 		if (track.length > 1 && track.length < 15) {
 			search = track;
 			preSearch(`track=${search}`);
+			return;
 		}
 		if (artist.length > 1 && artist.length < 15) {
 			search = artist;
 			preSearch(`artist=${search}`);
+			return;
 		}
 		if (track.length === 0 || artist.length === 0) {
 			PreSearchAlbumStore.set([]);
@@ -50,6 +53,7 @@
 				track: '',
 				image: ''
 			});
+			return;
 		}
 	}
 

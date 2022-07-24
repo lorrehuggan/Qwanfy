@@ -11,7 +11,9 @@
 	>
 	<Switch
 		checked={$EnabledStore}
-		on:change={(e) => EnabledStore.set(e.detail)}
+		on:change={(e) => {
+			EnabledStore.set(e.detail);
+		}}
 		class={`bg-c-pink-500 relative inline-flex h-6 w-11 items-center rounded-full transform transition-all ease-in-out duration-200`}
 	>
 		<span

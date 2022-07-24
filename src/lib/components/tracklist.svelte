@@ -57,7 +57,7 @@
 				<img
 					src={data.data.images[0].url}
 					alt={data.data.name}
-					class="z-30 mr-4 h-20 w-20 rounded opacity-90 shadow-main transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 lg:h-24 lg:w-24 "
+					class="z-30 mr-4 h-20 w-20 rounded opacity-90 shadow-lg transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 lg:h-24 lg:w-24 "
 				/>
 				<div class="z-30 w-full">
 					<div class="flex items-center">
@@ -94,7 +94,7 @@
 					>
 				</div>
 				<div
-					class=" absolute bottom-0 left-0 z-0 h-[90%] w-full translate-y-5 bg-black opacity-0 transition-all duration-500 ease-in-out group-hover:-translate-y-0 group-hover:opacity-100"
+					class=" absolute bottom-0 left-0 z-0 h-[90%] w-full translate-y-5 bg-neutral opacity-0 transition-all duration-500 ease-in-out group-hover:-translate-y-0 group-hover:opacity-100"
 				/>
 			</div>
 		{/each}
