@@ -8,7 +8,8 @@
 		PreSearchArtistStore,
 		DataStore,
 		RelatedStore,
-		PreSearchStore
+		PreSearchStore,
+		ErrorStore
 	} from '$lib/stores/store';
 	import LoadingMessage from '$lib/components/loadingMessage.svelte';
 	import SearchDropdown from '$lib/components/searchDropdown.svelte';
@@ -59,15 +60,27 @@
 
 	async function preSearch(search: string) {
 		try {
-			const response = await fetch(`${PRE_ENDPOINT}?${search}`);
-			const data = await response.json();
+			const request = await fetch(`${PRE_ENDPOINT}?${search}`, {
+				headers: {
+					Authorization: import.meta.env.VITE_AUTH_TOKEN
+				}
+			});
+
+			const response = await request.json();
+
+			ErrorStore.set(null);
+
+			if (response.error) {
+				ErrorStore.set(response.error);
+				return;
+			}
 
 			if ($EnabledStore) {
-				PreSearchArtistStore.set(data);
+				PreSearchArtistStore.set(response.data);
 				return;
 			}
 			if (!$EnabledStore) {
-				PreSearchAlbumStore.set(data.tracks.items);
+				PreSearchAlbumStore.set(response.data.tracks.items);
 				return;
 			}
 		} catch (error: any) {
@@ -102,7 +115,9 @@
 		<SearchSwitch />
 	</div>
 
-	<SearchDropdown {track} {artist} />
+	{#if !$ErrorStore}
+		<SearchDropdown {track} {artist} />
+	{/if}
 
 	<LoadingMessage />
 </section>

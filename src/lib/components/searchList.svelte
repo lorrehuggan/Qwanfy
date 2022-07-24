@@ -7,9 +7,10 @@
 		SearchingStore,
 		DataStore,
 		ActiveSearchStore,
-		PreSearchStore
+		PreSearchStore,
+		ErrorStore
 	} from '$lib/stores/store';
-	import type { ArtistResponse } from '$lib/types';
+	import type { ArtistResponse, MainResponse } from '$lib/types';
 
 	export let track: string = '';
 	export let artist: string = '';
@@ -25,9 +26,17 @@
 			try {
 				SearchingStore.set(true);
 				PreSearchStore.set(false);
-				const reponse = await fetch(`${MAIN_ENDPOINT}?id=${id}`);
-				const data = await reponse.json();
-				DataStore.set(data);
+				const request = await fetch(`${MAIN_ENDPOINT}?id=${id}`, {
+					headers: {
+						Authorization: import.meta.env.VITE_AUTH_TOKEN
+					}
+				});
+				const response: MainResponse = await request.json();
+				if (response.error) {
+					ErrorStore.set(response.error);
+					return;
+				}
+				DataStore.set(response.data);
 				ActiveSearchStore.set({
 					track: name,
 					image: image

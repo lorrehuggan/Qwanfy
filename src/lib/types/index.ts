@@ -1,7 +1,10 @@
+export interface MainResponse {
+	error: string;
+	data: Main[];
+}
 export interface Main {
 	features: Features;
 	data: Data;
-	origin: Origin;
 }
 
 export interface AudioFeatures {
