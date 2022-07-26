@@ -4,6 +4,7 @@
 	import ActiveSearch from '$lib/components/activeSearch.svelte';
 	import PreviewSong from '$lib/components/previewSong.svelte';
 	import type { Main } from '$lib/types';
+	import { fade } from 'svelte/transition';
 
 	let selected: Main[] = [];
 	let origin: Main[] = [];
@@ -49,12 +50,13 @@
 <section class="w-full xl:w-2/3">
 	{#if selected.length > 0}
 		<ActiveSearch />
-		<h3 class="mb-8 text-2xl font-bold">Track List</h3>
-		{#each selected.slice(0, 20) as data}
+		<h3 class="mb-8 text-2xl font-bold uppercase">Track List</h3>
+		{#each selected.slice(0, 20) as data, i}
 			<div
 				class=" group relative mb-4 flex cursor-pointer items-center rounded  p-2 shadow transition-all delay-500 duration-300 ease-in-out hover:bg-gradient-to-r hover:from-c-teal-500 hover:to-c-pink-700 lg:shadow-none "
 			>
 				<img
+					in:fade={{ delay: i * 100 }}
 					src={data.data.images[0].url}
 					alt={data.data.name}
 					class="z-30 mr-4 h-20 w-20 rounded opacity-90 shadow-lg transition-all duration-300 ease-in-out group-hover:-translate-y-2 group-hover:rotate-2 group-hover:opacity-100 lg:h-24 lg:w-24 "

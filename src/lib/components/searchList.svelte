@@ -8,7 +8,8 @@
 		DataStore,
 		ActiveSearchStore,
 		PreSearchStore,
-		ErrorStore
+		ErrorStore,
+		FeaturesStore
 	} from '$lib/stores/store';
 	import type { ArtistResponse, MainResponse } from '$lib/types';
 
@@ -26,6 +27,14 @@
 			try {
 				SearchingStore.set(true);
 				PreSearchStore.set(false);
+				FeaturesStore.set({
+					popularity: 0,
+					energy: 0,
+					tempo: 0,
+					danceability: 0,
+					valence: 0,
+					acousticness: 0
+				});
 				const request = await fetch(`${MAIN_ENDPOINT}?id=${id}`, {
 					headers: {
 						Authorization: import.meta.env.VITE_AUTH_TOKEN

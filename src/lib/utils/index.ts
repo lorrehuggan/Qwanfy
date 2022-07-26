@@ -8,6 +8,7 @@ import {
 	RelatedStore,
 	PreSearchStore
 } from '$lib/stores/store';
+import gsap from 'gsap';
 
 function padTo2Digits(num: number) {
 	return num.toString().padStart(2, '0');
@@ -57,5 +58,11 @@ export function resetSearch() {
 	ActiveSearchStore.set({
 		track: '',
 		image: ''
+	});
+}
+
+export function animateFrom<T>(id: string, args: T) {
+	gsap.from(id, {
+		...args
 	});
 }

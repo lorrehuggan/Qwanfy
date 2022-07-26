@@ -2,6 +2,7 @@
 	export let preview_url: string | null;
 	import { Howl, Howler } from 'howler';
 	import { songPlayingStore } from '$lib/stores/store';
+
 	$: playedPercent = 0;
 	let playing: boolean;
 	$: playing;

@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^2.19.0",
+		"gsap": "^3.10.4",
 		"howler": "^2.2.3"
 	}
 }

@@ -1,12 +1,15 @@
 <script lang="ts">
-	import { DataStore, ActiveSearchStore } from '$lib/stores/store';
+	import { DataStore, ActiveSearchStore, FeaturesStore } from '$lib/stores/store';
 	import RangeInput from '$lib/components/rangeInput.svelte';
-	let popularity = 0;
-	let energy = 0;
-	let tempo = 0;
-	let danceability = 0;
-	let valence = 0;
-	let acousticness = 0;
+	import { fade } from 'svelte/transition';
+
+	let popularity = $FeaturesStore.popularity;
+	let energy = $FeaturesStore.energy;
+	let tempo = $FeaturesStore.tempo;
+	let danceability = $FeaturesStore.danceability;
+	let valence = $FeaturesStore.valence;
+	let acousticness = $FeaturesStore.acousticness;
+
 	let open: boolean;
 	$: open = true;
 	function toggle() {
@@ -16,12 +19,12 @@
 
 {#if $DataStore.length > 0}
 	<section class="w-full rounded-lg p-0 xl:mr-4 xl:w-1/3">
-		<div tabindex="0" class="  bg-base-100 xl:sticky xl:top-4">
+		<div tabindex="0" class=" overflow-hidden bg-base-100 xl:sticky xl:top-4">
 			<div
 				on:click={toggle}
 				class={`group mb-2 flex cursor-pointer justify-between ${
 					open ? 'border-b border-black' : ''
-				} py-2 text-base font-bold`}
+				} py-2 text-base font-bold z-30`}
 			>
 				<p>{!open ? 'Hide' : 'Show'} Tracklist Settings</p>
 				{#if open}
@@ -48,7 +51,11 @@
 					</svg>
 				{/if}
 			</div>
-			<div class={`${open ? 'hidden' : 'block'} border-b-2 border-neutral`}>
+			<div
+				class={`${
+					open ? '-translate-x-full hidden lg:block' : 'translate-x-0 '
+				} border-b-2 border-neutral transition-all duration-300 ease-in-out z-10`}
+			>
 				<RangeInput
 					name="popularity"
 					val={popularity}

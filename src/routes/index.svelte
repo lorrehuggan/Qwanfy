@@ -3,6 +3,7 @@
 	import Tracklist from '$lib/components/tracklist.svelte';
 	import FeaturesSelection from '$lib/components/rangeSelection.svelte';
 	import { ErrorStore } from '$lib/stores/store';
+	import { fade } from 'svelte/transition';
 </script>
 
 <Search />

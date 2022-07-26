@@ -3,6 +3,16 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			keyframes: {
+				loading: {
+					'0%': { transform: 'translateX(0)' },
+					'50%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
+				}
+			},
+			animation: {
+				loading: 'loading 0.5s ease-in-out infinite'
+			},
 			boxShadow: {
 				main: `0px 0.9px 2.2px rgba(0, 0, 0, 0.02),
   0px 2.2px 5.3px rgba(0, 0, 0, 0.028),

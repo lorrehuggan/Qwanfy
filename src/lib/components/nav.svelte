@@ -1,10 +1,20 @@
 <script>
 	import SpotifyLogo from '$lib/icons/spotify-icon.svelte';
+	import { animateFrom } from '$lib/utils';
+	import { onMount } from 'svelte';
+	onMount(() => {
+		animateFrom('#logo', {
+			opacity: 0,
+			duration: 2,
+			ease: 'power3.out'
+		});
+	});
 </script>
 
 <nav class="mx-auto flex h-20 w-[90%] items-center  justify-between xl:w-2/3">
 	<div class="flex items-center">
 		<svg
+			id="logo"
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-4 w-4 text-c-teal-500 lg:h-6 lg:w-6"
 			viewBox="0 0 20 20"
@@ -17,6 +27,7 @@
 			/>
 		</svg>
 		<h1
+			id="logo"
 			class="bg-gradient-to-r from-c-teal-600 via-c-pink-400 to-c-pink-500 bg-clip-text text-lg font-black uppercase text-transparent lg:text-4xl"
 		>
 			Qwanfy

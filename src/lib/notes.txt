@@ -1,2 +1,0 @@
-GET
-	https://dubolt.com/api/recommendations?limit=25&min_popularity=58&max_popularity=100&min_energy=0&max_energy=1&min_instrumentalness=0&max_instrumentalness=1&min_tempo=24&max_tempo=208&min_danceability=0&max_danceability=1&min_valence=0&max_valence=1&min_acousticness=0&max_acousticness=1&seed_artists=&seed_tracks=3iVcZ5G6tvkXZkZKlMpIUs&seed_genres=
